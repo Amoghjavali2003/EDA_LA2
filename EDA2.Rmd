@@ -1,0 +1,148 @@
+---
+title: "EDA LA-2 REPORT"
+author: "Amogh Javali"
+date: "2024-01-27"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Stack Overflow Developer Survey Dataset
+
+## Load a dataset:
+```{r}
+my_data <- read.csv("C:/Users/amogh/Desktop/AMOGH/Book1.csv")
+```
+
+# Quickly Exploring Data
+## summary statistics
+```{r}
+# Display summary statistics for the entire dataset
+summary(my_data)
+
+# Display summary statistics for numerical variables only
+summary(my_data[, sapply(my_data, is.numeric)])
+```
+
+## Pair Plots 
+```{r}
+library(psych)
+pairs.panels(my_data[, sapply(my_data, is.numeric)])
+```
+
+# Bar Graphs
+
+## Bar Plot
+```{r}
+library(ggplot2)
+ggplot(my_data, aes(x = as.factor(YearsCode), y = YearsCodePro)) +
+  geom_bar(stat = "identity") +
+  ggtitle("Bar Plot") +
+  xlab("YearsCode") + ylab("YearsCodePro")
+
+```
+
+## Histogram
+```{r}
+ggplot(my_data, aes(x = YearsCodePro )) +
+  geom_histogram(fill = "lightblue", bins = 10) +
+  ggtitle("Histogram") +
+  xlab("YearsCodePro") + ylab("Frequency")
+
+
+```
+
+## Box plot
+```{r}
+ggplot(my_data, aes(x = "YearsCode", y = YearsCodePro)) +
+  geom_boxplot(fill = "lightblue") +
+  ggtitle("Box Plot") +
+  xlab("") + ylab("YearsCodePro")
+
+
+```
+
+# Line Graphs
+## Line plot
+```{r}
+ggplot(my_data, aes(x = YearsCode , y = YearsCodePro)) +
+  geom_line() +
+  ggtitle("Line Plot") +
+  xlab("YearsCodePro") + ylab("YearsCodePro")
+```
+
+# Scatter Plot 
+```{r}
+ggplot(my_data, aes(x = YearsCode, y = YearsCodePro)) +
+  geom_point() +
+  ggtitle("Scatter Plot") +
+  xlab(" YearsCode") + ylab("YearsCodePro")
+
+```
+
+
+## Area plot
+```{r}
+ggplot(my_data, aes(x =  YearsCode, y =  YearsCodePro , fill = as.factor( YearsCodePro ))) +
+  geom_area() +
+  ggtitle("Area Plot") +
+  xlab(" YearsCode") + ylab(" YearsCodePro ")
+
+
+
+```
+
+## Violin
+```{r}
+ggplot(my_data, aes(x = "Variable", y = YearsCodePro)) +
+  geom_violin() +
+  ggtitle("Violin Plot") +
+  xlab("") + ylab("Y-axis")
+
+```
+
+## Heatmap
+```{r}
+ggplot(my_data, aes(x = "Variable", y = "Observation", fill = YearsCodePro)) +
+  geom_tile() +
+  ggtitle("Heatmap") +
+  xlab("") + ylab("Observation")
+
+```
+
+## Polar plot 
+```{r}
+ggplot(my_data, aes(x = YearsCode, y = YearsCodePro)) +
+  geom_point() +
+  coord_polar() +
+  ggtitle("Polar Plot") +
+  xlab("YearsCode") + ylab("YearsCodePro")
+
+```
+
+## density curve
+```{r}
+ggplot(my_data, aes(x = YearsCode)) +
+  geom_density(color = "black", alpha = 0.7) +
+  ggtitle("Density Plot") +
+  xlab("X-axis") +
+  ylab("Density") +
+  theme_minimal()
+```
+
+## dot plot
+```{r}
+ggplot(my_data, aes(x = YearsCode, y = YearsCodePro)) +
+  geom_dotplot(binaxis = "y", stackdir = "center", dotsize = 0.7, color = "black") +
+  ggtitle("Dot Plot") +
+  xlab("Category") +
+  ylab("Value") +
+  theme_minimal()
+```
+
+# Summarized Data Distributions
+```{r}
+summary(my_data[, sapply(my_data, is.numeric)])
+```
+
